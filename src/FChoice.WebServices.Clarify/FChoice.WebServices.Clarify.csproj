@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FF96FC3D-598B-4A0E-AA9A-D903347409D8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>FChoice.WebServices.Clarify</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FChoice.WebServices.Clarify</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\src\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb">
+      <HintPath>..\packages\Dovetail.SDK\lib\net40\adodb.dll</HintPath>
+    </Reference>
+    <Reference Include="FChoice.Common">
+      <HintPath>..\packages\Dovetail.SDK\lib\net40\FChoice.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="FChoice.Foundation.Clarify.Compatibility">
+      <HintPath>..\packages\Dovetail.SDK\lib\net40\FChoice.Foundation.Clarify.Compatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="FChoice.Foundation.Clarify.Compatibility.Toolkits">
+      <HintPath>..\packages\Dovetail.SDK\lib\net40\FChoice.Foundation.Clarify.Compatibility.Toolkits.dll</HintPath>
+    </Reference>
+    <Reference Include="FChoice.Toolkits.Clarify">
+      <HintPath>..\packages\Dovetail.SDK\lib\net40\FChoice.Toolkits.Clarify.dll</HintPath>
+    </Reference>
+    <Reference Include="fcSDK">
+      <HintPath>..\packages\Dovetail.SDK\lib\net40\fcSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\packages\odp.net.managed\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuthenticationHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClarifyApplicationSrv.asmx.cs">
+      <DependentUpon>ClarifyApplicationSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ClarifyDataAccessSrv.asmx.cs">
+      <DependentUpon>ClarifyDataAccessSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ClarifyGenericSrvIUD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClarifyGenericSrvQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClarifyGenericSrvQueryParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClarifySessionSrv.asmx.cs">
+      <DependentUpon>ClarifySessionSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ContractsToolkitSrv.asmx.cs">
+      <DependentUpon>ContractsToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DepotRepairToolkitSrv.asmx.cs">
+      <DependentUpon>DepotRepairToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FieldOpsToolkitSrv.asmx.cs">
+      <DependentUpon>FieldOpsToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InterfacesToolkitSrv.asmx.cs">
+      <DependentUpon>InterfacesToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LogisticsToolkitSrv.asmx.cs">
+      <DependentUpon>LogisticsToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Protocols\AdditionalFieldProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\CaseTimeAndExpensesProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\ClarifyConfigItemProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Contracts\ContractsToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Contracts\ContractsToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\CountryProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\DepotRepair\DepotRepairToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\DepotRepair\DepotRepairToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\FieldOps\FieldOpsToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\FieldOps\FieldOpsToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\DeleteModifierProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\FieldProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\FilterInListProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\FilterProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\InsertModifierProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\ModifierProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\ModifierResultProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\QueryProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\ReferenceModifierProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\RelationProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\SortProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Generic\UpdateModifierProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\GlobalStringElementProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\GlobalStringListProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\HierarchicalStringElementProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Interfaces\InterfacesToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Interfaces\InterfacesToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\LocationProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Logistics\LogisticsToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Logistics\LogisticsToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Quality\QualityToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Quality\QualityToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Sales\SalesToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Sales\SalesToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\StateProvinceProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\SubcaseTimeAndExpensesProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Support\SupportToolkitResultsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\Support\SupportToolkitSetupsProtocols.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\TimeZoneProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Protocols\ToolkitResultProtocol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QualityToolkitSrv.asmx.cs">
+      <DependentUpon>QualityToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SalesToolkitSrv.asmx.cs">
+      <DependentUpon>SalesToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SupportToolkitSrv.asmx.cs">
+      <DependentUpon>SupportToolkitSrv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Content Include="ClarifyApplicationSrv.asmx" />
+    <Content Include="ClarifyDataAccessSrv.asmx" />
+    <Content Include="ClarifySessionSrv.asmx" />
+    <Content Include="ContractsToolkitSrv.asmx" />
+    <Content Include="default.htm" />
+    <Content Include="DepotRepairToolkitSrv.asmx" />
+    <Content Include="FieldOpsToolkitSrv.asmx" />
+    <Content Include="Global.asax">
+    </Content>
+    <Content Include="InterfacesToolkitSrv.asmx" />
+    <Content Include="LogisticsToolkitSrv.asmx" />
+    <Content Include="QualityToolkitSrv.asmx" />
+    <Content Include="SalesToolkitSrv.asmx" />
+    <Content Include="SupportToolkitSrv.asmx" />
+    <Content Include="Web.config" />
+    <Content Include="WebServices.cst.xml" />
+    <EmbeddedResource Include="ClarifyApplicationSrv.asmx.resx">
+      <DependentUpon>ClarifyApplicationSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClarifyDataAccessSrv.asmx.resx">
+      <DependentUpon>ClarifyDataAccessSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClarifySessionSrv.asmx.resx">
+      <DependentUpon>ClarifySessionSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContractsToolkitSrv.asmx.resx">
+      <DependentUpon>ContractsToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepotRepairToolkitSrv.asmx.resx">
+      <DependentUpon>DepotRepairToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FieldOpsToolkitSrv.asmx.resx">
+      <DependentUpon>FieldOpsToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Global.asax.resx">
+      <DependentUpon>Global.asax.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfacesToolkitSrv.asmx.resx">
+      <DependentUpon>InterfacesToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogisticsToolkitSrv.asmx.resx">
+      <DependentUpon>LogisticsToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QualityToolkitSrv.asmx.resx">
+      <DependentUpon>QualityToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesToolkitSrv.asmx.resx">
+      <DependentUpon>SalesToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportToolkitSrv.asmx.resx">
+      <DependentUpon>SupportToolkitSrv.asmx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="ripple.dependencies.config" />
+    <None Include="WebServiceResults.cst" />
+    <None Include="WebServices.cst" />
+    <None Include="WebServiceSetups.cst" />
+    <None Include="WebServiceToolkitWrappers.cst" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+</Project>

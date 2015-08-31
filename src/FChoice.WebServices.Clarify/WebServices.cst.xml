@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<codeSmith>
+	<propertySet>
+		<property name="assembly">C:\repo\trunk\Foundation\build\net-1.1.win32\Foundation-4.0-debugbuild\bin\FChoice.Toolkits.Clarify.dll</property>
+		<property name="className">SupportToolkit</property>
+	</propertySet>
+</codeSmith>
