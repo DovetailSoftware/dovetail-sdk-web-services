@@ -1,2 +1,2 @@
-dovetail-sdk-web-services
+Dovetail SDK Web Services
 =========================
