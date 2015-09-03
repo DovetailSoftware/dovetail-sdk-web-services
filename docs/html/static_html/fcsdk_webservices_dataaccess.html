@@ -1,0 +1,479 @@
+<html xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<head>
+	<meta name="GENERATOR" content="Innovasys Document! X (http://www.innovasys.com)">
+	<title>Accessing Data with the Web Services</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/dotnetstylesheet.css">
+	<script src="script/dotnet.js"></script>	
+</head>
+<body id="dxBody" topmargin="0">	
+	<object id="obj_cook" classid="clsid:59CC0C20-679B-11D2-88BD-0800361A1803" style="display:none;" VIEWASTEXT></object>
+	<div id="dxlanguagemenu" class="popupbubble">
+		<h4><!--DXMETADATA start type="Phrase" name="Language" -->Language<!--DXMETADATA end --></h4>
+		<!--DXMETADATA start type="FilteredItemList" scrap="LANGUAGE_LIST" namespace="language" source="Item" filter="" format="" -->
+		<p><a href="" onClick="setLanguageFilter('VB')">Visual Basic</a></p>
+		<p><a href="" onClick="setLanguageFilter('CS')">C#</a></p>
+		<p><a href="" onClick="setLanguageFilter('All')">Show All</a></p>
+		<!--DXMETADATA end -->
+	</div>
+	<div id="pagetop">
+		<div id="projectnamebanner">
+			<table CLASS="projectnametable" CELLSPACING=0>
+				<tr>
+					<td><!--DXMETADATA start type="Variable" name="ProductTitle" -->fcSDK<!--DXMETADATA end --> Documentation</td>
+					<td align="right"><a href="mailto:support@dovetailsoftware.com?subject=Documentation Feedback: fcSDK Documentation">Send comments</a> on this topic.</td>
+				</tr>
+			</table>
+		</div>
+		<div id="pagetitlebanner">
+			<H1 class="dxH1">Accessing Data with the Web Services</h1>
+		</div>
+	</div>
+	<div id="pagebody" valign="bottom">
+
+	<h2>In this Section</h2>
+	<hr/>
+	<ul>
+		<li><a href="#overview">Overview</a></li>
+		<li><a href="#querying">Querying Data</a></li>
+		<li><a href="#querying">Modifying Data</a></li>
+	</ul>
+	
+		<a name="overview"></a>
+		<h2>Overview</h2>
+		<hr/>
+		<p>The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> class, which is part of the fcSDK Web Services Client, provides an abstraction of the powerful ClarifyGeneric
+		which can be use with web services. <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> allows you to query data as well as make modifications.  In each case,
+		messages are built on the client side of the web services which describe what ClarifyGeneric instructions to be processed on the 
+		server side of the web services.  Please see <a href="/fcsdk_dataaccess.html">&quot;Accessing Data with ClarifyGeneric&quot;</a> for details on generics and how to use them.</p>
+
+		<a name="querying"></a>
+		<h2>Querying Data</h2>
+		<hr/>
+		<p>You query data by creating an instance of the 
+		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a> class and
+		providing it with the information it needs to preform the desired query.  You can specify the fields which get returned
+		as well as filter and sorting criteria.
+		</p>
+		
+		<p>The following example will query for sites whose type is 1, sorted by ID Number descending. The example will then print out each site queried.</p>
+		
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table1">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Create an instance of data access client using a valid client session</font><br/>
+ClarifyDataAccessWS clarifyDA = <font class='keyword'>new</font> ClarifyDataAccessWS( session );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;&nbsp;Get all sites whose 'type' is 1 and sort by site ID, descending</font><br/>
+DataQuery siteQuery = clarifyDA.CreateDataQuery(<font class='string'>"site"</font>);<br/>
+siteQuery.DataFields.AddRange(<font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"objid"</font>, <font class='string'>"site_id"</font>, <font class='string'>"name"</font>});<br/>
+siteQuery.AppendFilter( <font class='string'>"type"</font>, <font class='string'>"Equals"</font>, <font class='string'>"1"</font> );<br/>
+siteQuery.AppendSort( <font class='string'>"site_id"</font>, <font class='keyword'>false</font> );<br/>
+<br/>
+<font class='comment'>// Now query the data and return the result</font><br/>
+<font class='keyword'>string</font> result = siteQuery.Query();<br/>
+<br/>
+<font class='comment'>// Output the result to the console</font><br/>
+Console.WriteLine(result);<br/>	
+		</CODE></TD></TR></TABLE></DIV></p></DIV>						
+		
+		<p>All results from queries are returned as an XML string.  The previous example would output something similar to the following:</p>
+<pre>
+&lt;ClarifyGenericQuery&gt;
+	&lt;site objid=&quot;268435458&quot; site_id=&quot;NA&quot; name=&quot;Unknown&quot; /&gt;
+	&lt;site objid=&quot;268436436&quot; site_id=&quot;999&quot; name=&quot;Test Site 1&quot; /&gt;
+	&lt;site objid=&quot;268436435&quot; site_id=&quot;998&quot; name=&quot;Test Site 2&quot; /&gt;
+	&lt;site objid=&quot;268436434&quot; site_id=&quot;997&quot; name=&quot;Test Site 3&quot; /&gt;
+	&lt;site objid=&quot;268436433&quot; site_id=&quot;996&quot; name=&quot;Test Site 4&quot; /&gt;
+	&lt;site objid=&quot;268436432&quot; site_id=&quot;995&quot; name=&quot;Test Site 5&quot; /&gt;
+	&lt;site objid=&quot;268436431&quot; site_id=&quot;994&quot; name=&quot;Test Site 6&quot; /&gt;
+	&lt;site objid=&quot;268436430&quot; site_id=&quot;993&quot; name=&quot;Test Site 7&quot; /&gt;
+	&lt;site objid=&quot;268436429&quot; site_id=&quot;992&quot; name=&quot;Test Site 8&quot; /&gt;
+&lt;/ClarifyGenericQuery&gt;
+</pre>
+
+		<p>You may then read the XML data as you wish (i.e. XmlDocument).  You may also specify that the query return
+		schema information for the fields selected so that you can load the results into a ADO.NET DataSet.
+		</p>
+		
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table2">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Create an instance of data access client using a valid client session</font><br/>
+ClarifyDataAccessWS clarifyDA = <font class='keyword'>new</font> ClarifyDataAccessWS( session );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;&nbsp;Get all sites whose 'type' is 1 and sort by site ID, descending</font><br/>
+DataQuery siteQuery = clarifyDA.CreateDataQuery(<font class='string'>"site"</font>);<br/>
+siteQuery.DataFields.AddRange(<font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"objid"</font>, <font class='string'>"site_id"</font>, <font class='string'>"name"</font>});<br/>
+siteQuery.AppendFilter( <font class='string'>"type"</font>, <font class='string'>"Equals"</font>, <font class='string'>"1"</font> );<br/>
+siteQuery.AppendSort( <font class='string'>"site_id"</font>, <font class='keyword'>false</font> );<br/>
+<br/>
+<font class='comment'>// Now query the data and return the result with schema information</font><br/>
+<font class='keyword'>string</font> result = siteQuery.Query(<font class='keyword'>true</font>);<br/>
+<br/>
+<font class='comment'>// Create a <font class='keyword'>string</font> reader to read the result</font><br/>
+System.IO.StringReader reader = <font class='keyword'>new</font> System.IO.StringReader(result);<br/>
+<br/>
+<font class='comment'>// Create and load the DataSet with the result</font><br/>
+DataSet ds = <font class='keyword'>new</font> DataSet();<br/>
+ds.ReadXml( reader );<br/>
+<br/>
+<font class='comment'>// Get the site table from the DataSet</font><br/>
+DataTable siteTable = ds.Tables[<font class='string'>"site"</font>];<br/>		
+		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+		
+		<p>The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a>
+		class also allows you to traverse relations just as you can with the
+		<a href="/fcSDK~FChoice.Foundation.Clarify.ClarifyGeneric.html">ClarifyGeneric</a>.  Calling the 
+		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery~Traverse.html">Traverse</a> method
+		allows you to specify the relation to traverse and returns a new instance of the 
+		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a> 
+		class that for the table or view that is the result of that relation.</p>
+		
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table3">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Create an instance of data access client using a valid client session</font><br/>
+ClarifyDataAccessWS clarifyDA = <font class='keyword'>new</font> ClarifyDataAccessWS( session );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;&nbsp;Get all sites whose 'type' is 1 and sort by site ID, descending</font><br/>
+DataQuery siteQuery = clarifyDA.CreateDataQuery(<font class='string'>"site"</font>);<br/>
+siteQuery.DataFields.AddRange(<font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"objid"</font>, <font class='string'>"site_id"</font>, <font class='string'>"name"</font>});<br/>
+siteQuery.AppendFilter( <font class='string'>"type"</font>, <font class='string'>"Equals"</font>, <font class='string'>"1"</font> );<br/>
+siteQuery.AppendSort( <font class='string'>"site_id"</font>, <font class='keyword'>false</font> );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;&nbsp;Get the primary address for the site by doing a traverse</font><br/>
+DataQuery addressQuery = siteQuery.Traverse( <font class='string'>"cust_primaddr2address"</font> );<br/>
+<br/>
+<font class='comment'>// Specify Data Fields to return</font><br/>
+addressQuery.DataFields.AddRange( <font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"address"</font>, <font class='string'>"city"</font>, <font class='string'>"state"</font>, <font class='string'>"zipcode"</font>} );<br/>
+<br/>
+<font class='comment'>// Now query the data and return the result</font><br/>
+<font class='keyword'>string</font> result = siteQuery.Query();<br/>
+<br/>
+<font class='comment'>// Output the result to the console</font><br/>
+Console.WriteLine(result);<br/>		
+		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+
+		<p>Data is return in a hierarchical structure and each relation is nested within it's parent object in the traversal.  
+		The previous example would output something similar to the following:</p>
+		
+<pre>
+&lt;ClarifyGenericQuery&gt;
+	&lt;site objid=&quot;268435458&quot; site_id=&quot;NA&quot; name=&quot;Unknown&quot;&gt;
+		&lt;address address=&quot;Not Available&quot; city=&quot;Not Available&quot; state=&quot;CA&quot; zipcode=&quot;00000&quot; /&gt;
+	&lt;/site&gt;
+	&lt;site objid=&quot;268436436&quot; site_id=&quot;999&quot; name=&quot;Test Site 1&quot;&gt;
+		&lt;address address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+	&lt;/site&gt;
+	&lt;site objid=&quot;268436435&quot; site_id=&quot;998&quot; name=&quot;Test Site 2&quot;&gt;
+		&lt;address address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+	&lt;/site&gt;
+	&lt;site objid=&quot;268436434&quot; site_id=&quot;997&quot; name=&quot;Test Site 3&quot;&gt;
+		&lt;address address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+	&lt;/site&gt;
+	&lt;site objid=&quot;268436433&quot; site_id=&quot;996&quot; name=&quot;Test Site 4&quot;&gt;
+		&lt;address address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+	&lt;/site&gt;
+	&lt;site objid=&quot;268436432&quot; site_id=&quot;995&quot; name=&quot;Test Site 5&quot;&gt;
+		&lt;address address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+	&lt;/site&gt;
+&lt;/ClarifyGenericQuery&gt;		
+</pre>
+
+		<p>If the following result is loaded into a DataSet, a row will be created for each address within a site even if
+		the address record is the same for all the sites, therefore creating duplicate address rows.</p>
+
+		<p>The order it which objects are traversed affects how the data will be nested.
+		For example, by traversing from the 'address' table to the 'site' table, the site information will be nested within
+		the address tag.</p>
+
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table4">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Create an instance of data access client using a valid client session</font><br/>
+ClarifyDataAccessWS clarifyDA = <font class='keyword'>new</font> ClarifyDataAccessWS( session );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;&nbsp;Get the address</font><br/>
+DataQuery addressQuery = clarifyDA.CreateDataQuery(<font class='string'>"address"</font>);<br/>
+<br/>
+<font class='comment'>// Specify Data Fields to return and filters</font><br/>
+addressQuery.DataFields.AddRange( <font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"objid"</font>, <font class='string'>"address"</font>, <font class='string'>"city"</font>, <font class='string'>"state"</font>, <font class='string'>"zipcode"</font>} );<br/>
+addressQuery.AppendFilter( <font class='string'>"objid"</font>, <font class='string'>"Equals"</font>, <font class='string'>"268435473"</font> );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;Traverse from address and get all sites whose 'type' is 1 and sort by site ID, descending</font><br/>
+DataQuery siteQuery = addressQuery.Traverse(<font class='string'>"primary_addr2site"</font>);<br/>
+siteQuery.DataFields.AddRange(<font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"objid"</font>, <font class='string'>"site_id"</font>, <font class='string'>"name"</font>});<br/>
+siteQuery.AppendFilter( <font class='string'>"type"</font>, <font class='string'>"Equals"</font>, <font class='string'>"1"</font> );<br/>
+siteQuery.AppendSort( <font class='string'>"site_id"</font>, <font class='keyword'>false</font> );<br/>
+<br/>
+<font class='comment'>// Now query the data and return the result</font><br/>
+<font class='keyword'>string</font> result = addressQuery.Query();<br/>
+<br/>
+<font class='comment'>// Output the result to the console</font><br/>
+Console.WriteLine(result);<br/>		
+		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+		
+<pre>
+&lt;ClarifyGenericQuery&gt;
+	&lt;address objid=&quot;268435473&quot; address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot;&gt;
+		&lt;site objid=&quot;268435458&quot; site_id=&quot;NA&quot; name=&quot;Unknown&quot; /&gt;
+		&lt;site objid=&quot;268436436&quot; site_id=&quot;999&quot; name=&quot;Test Site 1&quot; /&gt;
+		&lt;site objid=&quot;268436435&quot; site_id=&quot;998&quot; name=&quot;Test Site 2&quot; /&gt;
+		&lt;site objid=&quot;268436434&quot; site_id=&quot;997&quot; name=&quot;Test Site 3&quot; /&gt;
+		&lt;site objid=&quot;268436433&quot; site_id=&quot;996&quot; name=&quot;Test Site 4&quot; /&gt;
+		&lt;site objid=&quot;268436432&quot; site_id=&quot;995&quot; name=&quot;Test Site 5&quot; /&gt;
+	&lt;/address&gt;
+&lt;/ClarifyGenericQuery&gt;	
+</pre>
+
+		<p>You many have the need to use a table more than once within your DataQuery hierarchy which will require you to
+		specify a user defined name for the output table.  The following example shows how to query for three different addresses
+		for a site.</p>
+
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table5">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Create an instance of data access client using a valid client session</font><br/>
+ClarifyDataAccessWS clarifyDA = <font class='keyword'>new</font> ClarifyDataAccessWS( session );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;&nbsp;Get all sites whose 'type' is 1 and sort by site ID, descending</font><br/>
+DataQuery siteQuery = clarifyDA.CreateDataQuery(<font class='string'>"site"</font>);<br/>
+siteQuery.DataFields.AddRange(<font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"objid"</font>, <font class='string'>"site_id"</font>, <font class='string'>"name"</font>});<br/>
+siteQuery.AppendFilter( <font class='string'>"type"</font>, <font class='string'>"Equals"</font>, <font class='string'>"1"</font> );<br/>
+siteQuery.AppendSort( <font class='string'>"site_id"</font>, <font class='keyword'>false</font> );<br/>
+<br/>
+<font class='comment'>//&nbsp;&nbsp;&nbsp;Get the addresses and specify names for result tables</font><br/>
+DataQuery primaryAddress = siteQuery.Traverse( <font class='string'>"cust_primaddr2address"</font>, <font class='string'>"primaryAddress"</font> );<br/>
+DataQuery shipAddress = siteQuery.Traverse( <font class='string'>"cust_shipaddr2address"</font>, <font class='string'>"shipAddress"</font> );<br/>
+DataQuery billAddress = siteQuery.Traverse( <font class='string'>"cust_billaddr2address"</font>, <font class='string'>"billAddress"</font> );<br/>
+<br/>
+<font class='comment'>// Specify Data Fields to return</font><br/>
+primaryAddress.DataFields.AddRange( <font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"address"</font>, <font class='string'>"city"</font>, <font class='string'>"state"</font>, <font class='string'>"zipcode"</font>} );<br/>
+shipAddress.DataFields.AddRange( <font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"address"</font>, <font class='string'>"city"</font>, <font class='string'>"state"</font>, <font class='string'>"zipcode"</font>} );<br/>
+billAddress.DataFields.AddRange( <font class='keyword'>new</font> <font class='keyword'>string</font>[]{<font class='string'>"address"</font>, <font class='string'>"city"</font>, <font class='string'>"state"</font>, <font class='string'>"zipcode"</font>} );<br/>
+<br/>
+<font class='comment'>// Now query the data and return the result</font><br/>
+<font class='keyword'>string</font> result = siteQuery.Query();<br/>
+<br/>
+<font class='comment'>// Output the result to the console</font><br/>
+Console.WriteLine(result);<br/>		
+		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+
+<pre>
+&lt;ClarifyGenericQuery&gt;
+	&lt;site objid=&quot;268435458&quot; site_id=&quot;NA&quot; name=&quot;Unknown&quot;&gt;
+		&lt;primaryAddress address=&quot;Not Available&quot; city=&quot;Not Available&quot; state=&quot;CA&quot; zipcode=&quot;00000&quot; /&gt;
+		&lt;shipAddress address=&quot;Not Available&quot; city=&quot;Not Available&quot; state=&quot;CA&quot; zipcode=&quot;00000&quot; /&gt;
+		&lt;billAddress address=&quot;Not Available&quot; city=&quot;Not Available&quot; state=&quot;CA&quot; zipcode=&quot;00000&quot; /&gt;
+	&lt;/site&gt;
+	&lt;site objid=&quot;268436436&quot; site_id=&quot;999&quot; name=&quot;Test Site 1&quot;&gt;
+		&lt;primaryAddress address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+		&lt;shipAddress address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+		&lt;billAddress address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+	&lt;/site&gt;
+	&lt;site objid=&quot;268436435&quot; site_id=&quot;998&quot; name=&quot;Test Site 2&quot;&gt;
+		&lt;primaryAddress address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+		&lt;shipAddress address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+		&lt;billAddress address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
+	&lt;/site&gt;
+&lt;/ClarifyGenericQuery&gt;
+</pre>
+
+
+		<a name="querying"></a>
+		<h2>Modifying Data</h2>
+		<hr/>
+		
+		<p>Making modifications using the web services are done using the <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class.
+		You create an instance of the <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class by calling the 
+		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS~CreateDataModifier.html">CreateDataModifier</a> method of the 
+		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> class.</p>
+		
+		<p>After you have an instance of the <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class you
+		can begin to specify your updates.  The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class
+		has four factory methods for creating objects (called Modifiers) which will represent actions taken on single records within the database.
+		For example, if you wish to insert a new record, you will create a DeleteModifier which you will use to specify which record to delete.
+		</p>
+		
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table6">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Get next id number for site</font><br/>
+<font class='keyword'>string</font> siteIDNum = session.GetNextNumScheme(<font class='string'>"Site ID"</font>);<br/>
+<br/>
+<font class='comment'>// Create an instance of data access client using a valid client session</font><br/>
+ClarifyDataAccessWS clarifyDA = <font class='keyword'>new</font> ClarifyDataAccessWS( this.session );<br/>
+<br/>
+<font class='comment'>// Create an instance of the data modifier client</font><br/>
+DataModifier modifier = clarifyDA.CreateDataModifier();<br/>
+<br/>
+<font class='comment'>// Create InsertModifier to insert a <font class='keyword'>new</font> record</font><br/>
+InsertModifier siteInsert = modifier.CreateInsertModifier(<font class='string'>"mysite"</font>, <font class='string'>"site"</font>);<br/>
+<br/>
+<font class='comment'>// Specify values for fields</font><br/>
+siteInsert.SetField( <font class='string'>"site_id"</font>, siteIDNum );<br/>
+siteInsert.SetField( <font class='string'>"name"</font>, <font class='string'>"My test site"</font> );<br/>
+siteInsert.SetField( <font class='string'>"type"</font>, <font class='string'>"1"</font> );<br/>
+<br/>
+<font class='comment'>// Execute the database modifications and get the results</font><br/>
+ModifierResultProtocol[] insertResults = modifier.Update();<br/>
+<br/>
+<font class='comment'>// Loop through each result and write information to the console</font><br/>
+<font class='keyword'>foreach</font>(ModifierResultProtocol result <font class='keyword'>in</font> insertResults)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;Console.WriteLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='keyword'>string</font>.Format(<font class='string'>"Action:{0}, Table:{1}, Name:{2}, Objid:{3}"</font>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.Action, result.Table, result.Name, result.Objid) );<br/>
+}<br/>				
+		</CODE></TD></TR></TABLE></DIV></p></DIV>					
+		
+		<p>The previous example would output something similar to the following:</p>
+
+<pre>
+Action:Insert, Table:site, Name:mysite, Objid:268438543
+</pre>
+
+		<p>The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class allows
+		you to relate two records just as you can with <a href="/fcSDK~FChoice.Foundation.Clarify.ClarifyGeneric.html">ClarifyGeneric</a>.  To relate
+		one Modifier to another you call the <a href="FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.InsertModifier~RelateRecord.html">RelateRecord</a>
+		method.</p>
+		
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table7">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Get next id number for site and case</font><br/>
+<font class='keyword'>string</font> siteIDNum = session.GetNextNumScheme(<font class='string'>"Site ID"</font>);<br/>
+<font class='keyword'>string</font> caseIDNum = session.GetNextNumScheme(<font class='string'>"Case ID"</font>);<br/>
+<br/>
+<font class='comment'>// Create an instance of data access client using a valid client session</font><br/>
+ClarifyDataAccessWS clarifyDA = <font class='keyword'>new</font> ClarifyDataAccessWS( this.session );<br/>
+<br/>
+<font class='comment'>// Create an instance of the data modifier client</font><br/>
+DataModifier modifier = clarifyDA.CreateDataModifier();<br/>
+<br/>
+<font class='comment'>// Create InsertModifiers to insert a <font class='keyword'>new</font> records</font><br/>
+InsertModifier siteInsert = modifier.CreateInsertModifier(<font class='string'>"mysite"</font>, <font class='string'>"site"</font>);<br/>
+InsertModifier caseInsert = modifier.CreateInsertModifier(<font class='string'>"mycase"</font>, <font class='string'>"case"</font>);<br/>
+<br/>
+<font class='comment'>// Set site fields</font><br/>
+siteInsert.SetField( <font class='string'>"site_id"</font>, siteIDNum );<br/>
+siteInsert.SetField( <font class='string'>"name"</font>, <font class='string'>"My site test"</font> );<br/>
+siteInsert.SetField( <font class='string'>"type"</font>, <font class='string'>"1"</font> );<br/>
+<br/>
+<font class='comment'>// Relate site to case</font><br/>
+siteInsert.RelateRecord(<font class='string'>"cust_loc2case"</font>, caseInsert );<br/>
+<br/>
+<font class='comment'>// Set case fields</font><br/>
+caseInsert.SetField( <font class='string'>"title"</font>, <font class='string'>"Test from docs"</font> );<br/>
+caseInsert.SetField( <font class='string'>"id_number"</font>, caseIDNum );<br/>
+<br/>
+<font class='comment'>// Execute the database modifications and get the results</font><br/>
+ModifierResultProtocol[] insertResults = modifier.Update();<br/>
+<br/>
+<font class='comment'>// Loop through each result and write information to the console</font><br/>
+<font class='keyword'>foreach</font>(ModifierResultProtocol result <font class='keyword'>in</font> insertResults)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;Console.WriteLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='keyword'>string</font>.Format(<font class='string'>"Action:{0}, Table:{1}, Name:{2}, Objid:{3}"</font>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.Action, result.Table, result.Name, result.Objid) );<br/>
+}<br/>				
+		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+		
+		<p>The previous example would output something similar to the following:</p>
+		
+<pre>
+Action:Insert, Table:site, Name:mysite, Objid:268438544
+Action:Insert, Table:case, Name:mycase, Objid:268437676
+</pre>
+
+		<p>When modifiying data you are only allow to represent on record with exactly one Modifier object.  Therefore you can not update
+		more than one record using a single Modifier.  You may update serveral records by using a Modifier for each update.
+		It it also possible to update a record base on it's relations to another record.  You use the 
+		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ReferenceModifier.html">ReferenceModifier</a> to
+		reference a record with preforming an action on it. The following example show how to update the name of a site for a given case.</p>
+		
+	
+		<DIV Class=LanguageSpecific Name=Example_CS>
+		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table8">
+			<TR>
+			<TD NOWRAP>
+				<code class="VB">
+<font class='comment'>// Create an instance of the data modifier client</font><br/>
+DataModifier modifier = clarifyDA.CreateDataModifier();<br/>
+<br/>
+<font class='comment'>// Create modifier for updating site and reference a case</font><br/>
+UpdateModifier siteUpdate = modifier.CreateUpdateModifier(<font class='string'>"mysite"</font>, <font class='string'>"site"</font>);<br/>
+ReferenceModifier caseUpdateRef = modifier.CreateReferenceModifier(<font class='string'>"mycase"</font>, <font class='string'>"case"</font>);<br/>
+<br/>
+<font class='comment'>// Set field to update on site</font><br/>
+siteUpdate.SetField( <font class='string'>"name"</font>, <font class='string'>"<font class='keyword'>new</font> title from nunit"</font> );<br/>
+<br/>
+<font class='comment'>// Add a unique relation by case</font><br/>
+siteUpdate.AppendUniqueRelation( <font class='string'>"case_reporter2site"</font>, caseUpdateRef );<br/>
+<br/>
+<font class='comment'>// Add a unique filter by case objid</font><br/>
+caseUpdateRef.AppendUniqueFilter( <font class='string'>"objid"</font>, caseObjid );<br/>
+<br/>
+<font class='comment'>// Execute the database modifications and get the results</font><br/>
+ModifierResultProtocol[] updateResults = modifier.Update();<br/>
+<br/>
+<font class='comment'>// Loop through each result and write information to the console</font><br/>
+<font class='keyword'>foreach</font>(ModifierResultProtocol result <font class='keyword'>in</font> updateResults)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;Console.WriteLine(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='keyword'>string</font>.Format(<font class='string'>"Action:{0}, Table:{1}, Name:{2}, Objid:{3}"</font>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.Action, result.Table, result.Name, result.Objid) );<br/>
+}<br/>				
+		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+		
+		<p>The previous example would output something similar to the following:</p>
+		
+<pre>
+Action:Update, Table:site, Name:mysite, Objid:268438545
+Action:Reference, Table:case, Name:mycase, Objid:268437677	
+</pre>
+		
+
+		<div id="pagefooter"><p>&nbsp;</p><p>&nbsp;</p><hr size=1><p>&copy; 2010 Dovetail Software, Inc. - All rights reserved.<br/>- Clarify, Amdocs, and related products and names are copyright and trademark of Amdocs, Inc.<br/>- .NET, Visual Studio.NET, C#, Visual Basic and related products are trademark of Microsoft corporation.</p></div>
+
+	</div>
+</body>
+</html>

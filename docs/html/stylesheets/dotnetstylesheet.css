@@ -1,0 +1,363 @@
+﻿/* Provides support for Help 2.0 unbreakable links to .NET framework docs */
+@import url("ms-help://Hx/HxRuntime/HxLink.css");
+
+body
+{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background: #ffffff; 
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	width: 100%;
+}
+p
+	{
+	margin: .5em 0em .5em 0em;
+	}
+dl
+	{
+	margin-top: 0em; 
+	padding-left: 1px; /* Prevents italic-letter descenders from being cut off */
+	}
+dd
+	{
+	margin-bottom: 0em;  
+	margin-left: 1.5em; 
+	}
+dt
+	{
+	margin-top: .5em; 
+	}
+dd.popupbubble
+	{
+	margin-bottom: 0em;  
+	margin-left: -10px; 
+	}
+dt.popupbubble
+	{
+	margin-top: .5em; 
+	margin-left: -18px; 
+	}
+ol, ul
+	{
+	margin: .5em 0em 0em 2em; 
+	}
+li
+	{
+	margin-bottom: .5em;
+	}
+ul p, ol p, dl p
+	{
+	margin-left: 0em;
+	}
+blockquote.dxOverload
+	{
+	margin: .5em 1.5em .5em 1.5em;
+	}
+h1, h2, h3, h4
+	{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-bottom: .4em; 
+	margin-top: 1em;
+	font-weight: bold;
+	}
+h1
+	{
+	font-size: 120%;
+	margin-top: 0em;
+	}
+h2
+	{
+	font-size: 130%;
+	}
+h3
+	{
+	font-size: 115%;
+	}
+h4
+	{
+	font-size: 100%;
+	}
+.dxH1, .dxH2, .dxH3, .dxH4
+	{
+	margin-left: -18px;	
+	}
+MSHelp\:link
+{
+	text-decoration: underline;
+}
+A, MSHelp\:link
+{
+    COLOR : #0000FF
+}
+A:link, MSHelp\:link:link
+{
+    COLOR : #0000FF
+}
+A:active, MSHelp\:link:active
+{
+    COLOR : #000080
+}
+A:visited, MSHelp\:link:visited
+{
+    COLOR : #800080
+}
+A:hover, MSHelp\:link:hover
+{
+    COLOR : #FF0000
+}
+A.parameter:visited, A.parameter:active
+{
+    COLOR : #0000FF
+}
+PRE.example
+{
+    FONT-FAMILY: Courier New;
+    FONT-SIZE: 9pt;
+    COLOR: #000060;
+    margin-top: 0px;
+}
+CODE, p.example, p.sourcecode, table.sourcecode, tr.sourcecode, td.sourcecode
+{
+    FONT-FAMILY: Courier New;
+    FONT-SIZE: 9pt;
+    color: #000060;
+}
+div#pagetop
+	{
+	position: relative;
+	left: 0px;
+	padding: 0px 0px 0px 0px;
+	border-bottom: 1px solid #999999;
+	background-color: #99ccff;
+	}
+table#pagetopbreadcrumbs td
+	{
+	background-color: white; 
+	padding: 3 3 3 4; 
+	color: black;
+	border-top: 1px solid #999999;
+	}		
+div#projectnamebanner
+	{
+	background-color: #99ccff;
+	}
+div#pagebody
+	{
+	padding: 5px 10px 0px 22px; 
+	}
+div#pagetitlebanner
+	{
+	width: 100%; 
+	padding: 0px 10px 0px 22px; 
+	background-color: #99ccff;        
+	}	
+table.projectnametable
+	{
+	position: relative;
+	left: 0px;
+	top: 0px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	width: 100%;
+	height: 21px; 
+	border-collapse: collapse;
+	border-style: solid;
+	border-width: 0px;
+	background-color: #99ccff; 
+	font-size: 100%;
+	}
+table.projectnametable td 
+	{
+	align: left;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 0px 0px 4px;
+	vertical-align: middle;
+	border-width: 0px
+	border-style: solid;
+	border-color: #999999;
+	background: transparent; 
+	font-style: italic;
+	font-weight: normal;
+	}
+table.projectnametable td.button
+	{
+	width: 14px;
+	cursor: hand;
+	}
+div.popupbubble
+	{
+	left: 4px;
+	position: absolute;
+	padding: 0px 8px 5px 26px;
+	z-index: 1;
+	width: 50%;
+	visibility: hidden;
+	border: 1px solid #999999;
+	background: #ffffcc;
+	}	
+table.filtereditemlisttable, table.xmldoctable
+	{
+	width: 95%; 
+	margin-top: .6em;
+	margin-bottom: .3em;
+	border-width: 1px 1px 0px 0px;
+	border-style: solid;
+	border-color: #999999;
+	background-color: #999999; 
+	font-size: 100%;
+	}
+table.filtereditemlisttable th, table.filtereditemlisttable td, table.xmldoctable th, table.xmldoctable td
+	{ 
+	border-style: solid; 
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #999999;
+	padding: 4px 6px;
+	text-align: left;
+	vertical-align: top;
+	}
+table.filtereditemlisttable th, table.xmldoctable th
+	{ 
+	background: #cccccc; 
+	vertical-align: bottom;
+	}
+table.filtereditemlisttable td, table.xmldoctable td
+	{
+	background-color: #ffffff;
+	vertical-align: top;
+	}
+td.newlinkcell, td.newmembernamecell, div.newTopic
+	{
+	background-repeat: no-repeat; background-position: left top ; background-image:url('../dotnetimages/isnew.gif')
+	}
+table.syntaxtable, table.xmltable
+	{
+	width: 70%; 
+	margin-top: .6em;
+	margin-bottom: .3em;
+	border-width: 1px 1px 0px 0px;
+	border-style: solid;
+	border-color: #999999;
+	background-color: #999999; 
+	font-size: 100%;
+	}
+table.syntaxtable th, table.syntaxtable td, table.xmltable th, table.xmltable td
+	{ 
+	border-style: solid; 
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #999999;
+	padding: 4px 6px;
+	text-align: left;
+	}
+table.syntaxtable th, table.xmltable th
+	{ 
+	background-color: #cccccc; 
+	vertical-align: bottom;
+	}
+table.syntaxtable td, table.xmltable td
+	{
+	background-color: #ffffff;
+	vertical-align: top;
+	}	
+pre.syntax
+	{
+	background-color: #cccccc;
+	padding: 4px 8px;
+	cursor: text;
+	margin-top: 1em;
+	margin-bottom: 1em; 
+	color: #000000;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #999999;
+	}
+table
+	{
+	border-collapse: collapse;
+	font-size: 100%
+	}		
+/* VB.NET source code colorization */
+code.VB
+{
+    color: #000000;
+}
+.keyword {
+	color: Navy;
+}
+
+.comment {
+	color: Green;
+}
+
+.string {
+	color: Gray;
+}
+
+/* XML colorization */
+
+/* Container spacing*/
+table.xmltable { width: 100%; }
+pre.plainxml { margin-left: 1px; margin-bottom: 0px; }
+div.dynamicxml, div.colorizedxml { margin-left: -18px; }
+div.colorizedxml div, div.dynamicxml div { margin-top: 0; margin-bottom: 0; }
+div.dynamicxml a, div.dynamicxml a:hover { text-decoration: none; }
+
+/* Container format*/
+pre.plainxml, div.colorizedxml, div.dynamicxml
+{
+	word-wrap: 	break-word;
+	font-family:	Monospace, Courier New, Courier;
+}
+
+/* container for expanding/collapsing content */
+.c{cursor:hand}
+
+/* button - contains +/-/nbsp */
+.b{color:red;font-family:'Courier New';font-weight:bold;text-decoration:none}
+
+/* element container, comment or CDATA */
+.e,.k{margin-left:30px;text-indent:-1em;margin-right:1em}
+
+/* tag */
+.t{color:#990000}
+
+/* tag in xsl namespace */
+.xt{color:#990099}
+
+/* attribute in xml or xmlns namespace */
+.ns{color:red}
+
+/* attribute in dt namespace */
+.dt{color:green}
+
+/* markup characters */
+.m  {color:blue}
+
+/* text node */
+.tx {font-weight:bold}
+
+/* multi-line (block) cdata */
+.db {text-indent:0px; margin-left:1em; margin-top:0px; margin-bottom:0px; padding-left:.3em; border-left:1px solid #CCCCCC; font:small Courier}
+
+/* single-line (inline) cdata */
+.di {font:small Courier}
+
+/* DOCTYPE declaration, pi */
+.d, .pi  {color:blue}
+
+/* multi-line (block) comment */
+.cb {text-indent:0px; margin-left:1em; margin-top:0px; margin-bottom:0px; padding-left:.3em; font:small Courier; color:#888888}
+
+/* single-line (inline) comment */
+.ci {font:small Courier; color:#888888}
+
+/* CDATA text */
+PRE.x{margin:0px;display:inline;}
+
+/* End XML colorization */
+.NewStyle
+{
+}
