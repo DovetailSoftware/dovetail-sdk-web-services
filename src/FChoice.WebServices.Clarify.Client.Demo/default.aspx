@@ -6,24 +6,21 @@
 <%@ Register TagPrefix="FChoice" Namespace="FChoice.WebServices.Clarify.Client.Demo" Assembly="FChoice.WebServices.Clarify.Client.Demo" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
-<HTML>
+<html>
   <HEAD>
-    <title>fcSDK WebServices Client Demo</title>
-    <meta name="GENERATOR" Content="Microsoft Visual Studio .NET 7.1">
-    <meta name="CODE_LANGUAGE" Content="C#">
+    <title>Dovetail Web Services Client Demo</title>
     <meta name=vs_defaultClientScript content="JavaScript">
     <meta name=vs_targetSchema content="http://schemas.microsoft.com/intellisense/ie5">
     <LINK rel="stylesheet" type="text/css" href="style.css">
   </HEAD>
   <body >
-	
     <form id="Form1" method="post" runat="server">
 			<table width="100%" cellspacing=0 cellpadding=5>
-				<tr class="pageHeader"><td valign="middle" colspan=2><h3>fcSDK WebServices Portal Sample</h3></td></tr>
+				<tr class="pageHeader"><td valign="middle" colspan=2><h3>Dovetail Web Services Portal Sample</h3></td></tr>
 				<tr class="pageHeaderBar" height="2"><td colspan=2></td></tr>
 				<tr>
 					<td colspan="2" class="text" width="100%" valign="top">
-						<p>Welcome to the portal sample application which demonstrates how to use our fcSDK WebServices Client to access Clarify data using fcSDK WebServices. 
+						<p>Welcome to the portal sample application which demonstrates how to use our Dovetail Web Services Client to access Clarify data using Dovetail Web Services. 
 						All of the samples on this page are broken up into simple ASP.NET users controls which you can use as a starting point in creating our own applications using the web service client. 
 						The logic is implemented in the code behind of each user control.</p>
 					</td>			
@@ -79,7 +76,7 @@
 						<p>
 							The <b>Create New Contact</b> example shows you how to update data using DataModifier API which is created from ClarifyDataAccessWS.CreateDataModifier().
 							It shows how you can insert and relate new records as well as referencing existing records.
-							With the DataModifier API, you can instruct the fcSDK WebServices to Insert, Update and Delete records by respectably using the CreateInsertModifier(), CreateUpdateModifier() and CreateDeleteModifier() methods of the DataModifier class.
+							With the DataModifier API, you can instruct the Dovetail Web Services to Insert, Update and Delete records by respectably using the CreateInsertModifier(), CreateUpdateModifier() and CreateDeleteModifier() methods of the DataModifier class.
 							You then can then specify fields to update or use relations as shown in the example.
 						</p>
 					</td>	
@@ -87,6 +84,5 @@
 			</table>
 			<FChoice:PostBackPageScroll runat=server ID="postBackPageScroll" />
      </form>
-	
   </body>
-</HTML>
+</html>

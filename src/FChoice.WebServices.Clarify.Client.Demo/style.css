@@ -1,85 +1,61 @@
-body
-{
-	margin:0px;
-	padding:0px;
-	font-family:Verdana, Arial;
-	font-size:x-small;
-	color:Navy;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Arial;
+  color: Navy;
 }
-.commandButton
-{
-	font-size:x-small;
+
+table {
+  font-family: Verdana, Arial;
+  color: Navy;
 }
-table
-{
-	font-family:Verdana, Arial;
-	font-size:x-small;
-	color:Navy;
+
+.text {
+  line-height: 1.5em;
+  padding: 10px;
 }
-.text
-{
-	font-size:x-small;
-	line-height:1.5em;
-	text-indent:1.5em;
-	padding:10px;
+
+.errorMsg {
+  color: Red;
 }
-.errorMsg
-{
-	
-	color:Red;
+
+.gridHeading {
+  padding: 3px;
+  color: white;
+  background-color: saddlebrown;
 }
-.gridHeading
-{
-	padding-right: 2px;
-	padding-left: 2px;
-	font-size: xx-small;
-	padding-bottom: 2px;
-	color: white;
-	padding-top: 2px;
-	background-color: saddlebrown;
+
+.gridItemRow {
+  padding: 3px;
+  color: navy;
+  background-color: ivory;
 }
-.gridItemRow
-{
-	padding-right: 2px;
-	padding-left: 2px;
-	font-size: xx-small;
-	padding-bottom: 2px;
-	color: navy;
-	padding-top: 2px;
-	background-color: ivory;
+
+.gridAltItemRow {
+  padding: 3px;
+  color: navy;
+  background-color: beige;
 }
-.gridAltItemRow
-{
-	padding-right: 2px;
-	padding-left: 2px;
-	font-size: xx-small;
-	padding-bottom: 2px;
-	color: navy;
-	padding-top: 2px;
-	background-color: beige;
+
+.gridItemRow td, .gridAltItemRow td {
+  padding: 3px;
 }
-.gridItemRow td, .gridAltItemRow td
-{
-	padding:2px;
+
+.pageHeader {
+  color: navy;
+  background-color: lightgoldenrodyellow;
 }
-.pageHeader
-{
-	color: navy;
-	background-color: lightgoldenrodyellow;
+
+.pageHeaderBar {
+  background-color: saddlebrown;
 }
-.pageHeaderBar
-{
-	background-color: saddlebrown;
-	font-size: xx-small;
+
+.gridTitle {
+  font-weight: bold;
+  color: white;
+  background-color: darkslategray;
 }
-.gridTitle
-{
-	font-weight: bold;
-	font-size: x-small;
-	color: white;
-	background-color: darkslategray;
-}
-.gridFrame
-{
-	border:solid 1px darkslategray;
+
+.gridFrame {
+  border: solid 1px darkslategray;
 }
