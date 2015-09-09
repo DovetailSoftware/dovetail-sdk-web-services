@@ -1,0 +1,369 @@
+<html xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+	<head>
+		<meta name="GENERATOR" content="Innovasys Document! X (http://www.innovasys.com)">
+		<title>Developer Walkthrough - Web Services Fundamentals</title>
+		<link rel="stylesheet" type="text/css" href="stylesheets/dotnetstylesheet.css">
+		<script src="script/dotnet.js"></script>
+
+	</head>
+	<body id="dxBody" topmargin="0">
+		<object id="obj_cook" classid="clsid:59CC0C20-679B-11D2-88BD-0800361A1803" style="display:none;" VIEWASTEXT></object>
+		<div id="dxlanguagemenu" class="popupbubble">
+		<h4><!--DXMETADATA start type="Phrase" name="Language" -->Language<!--DXMETADATA end --></h4>
+		<!--DXMETADATA start type="FilteredItemList" scrap="LANGUAGE_LIST" namespace="language" source="Item" filter="" format="" -->
+		<p><a href="" onClick="setLanguageFilter('VB')">Visual Basic</a></p>
+		<p><a href="" onClick="setLanguageFilter('CS')">C#</a></p>
+		<p><a href="" onClick="setLanguageFilter('All')">Show All</a></p>
+		<!--DXMETADATA end -->
+		</div>
+		<div id="pagetop">
+			<div id="projectnamebanner">
+				<table CLASS="projectnametable" CELLSPACING="0" ID="Table1">
+					<tr>
+						<td><!--DXMETADATA start type="Variable" name="ProductTitle" -->fcSDK<!--DXMETADATA end --> SDK Documentation</td>
+						<td align="right"><a href="mailto:support@dovetailsoftware.com?subject=Documentation Feedback: fcSDK Documentation">Send comments</a> on this topic.</td>
+					</tr>
+				</table>
+			</div>
+			<div id="pagetitlebanner">
+			<H1 class="dxH1">Developer Walkthrough - Web Services Fundamentals</h1>
+			</div>
+		</div>
+<div id="pagebody" valign="bottom">
+
+	<h2>Web Services Fundamentals</h2>
+
+<h3>Overview</h3>
+
+<p>This walkthrough will provide an overview of the basic usage pattern involved in using the fcSDK Web Services.</p>
+
+<p>A typical web service scenario is composed of two parts: the server which hosts the web services and the client or clients who will make request and receive responses from those web services.  
+The web service server will be the machine where the fcSDK is installed which is also typically a web application server.  
+The fcSDK Web Services is an ASP.NET web application runing under IIS.</p>
+
+<p>Making web service calls is not unlike making browser request to a web page.  
+The main difference being that web service calls are generally made from applications instead of a client browser.  
+Just as a web application can provide a user interface into fcSDK, 
+the fcSDK Web Services provides a programmatically way to interface with fcSDK from a remote machine.
+</p>
+
+<p><img src="./webservices.png"></p>
+
+<p>Web services may be consumed by any language or platform that can send requests and receive responses over HTTP.  
+This makes it possible to use Java to call .NET web services such as the fcSDK Web Services.</p>
+
+<p>
+	The fcSDK Web Services are implemented as typical ASP.NET Web Services.  
+	The following web service pages are installed as part of the fcSDK Web Services installation.
+	<ul>
+		<li>ClarifyApplicationSrv.asmx - contains web methods for dealing with application level information such as schema cache and string cache</li>
+		<li>ClarifySessionSrv.asmx - an abstraction of a ClarifySession which deals with session level information</li>
+		<li>ClarifyDataAccessSrv.asmx - an abstraction of a ClarifyGeneric which allows querying and data modifications</li>
+		<li>ContractsToolkitSrv.asmx - an abstraction of the API ContractsToolkit</li>
+		<li>DepotRepairToolkitSrv.asmx - an abstraction of the API DepotRepairToolkit</li>
+		<li>FieldOpsToolkitSrv.asmx - an abstraction of the API FieldOpsToolkit</li>
+		<li>InterfacesToolkitSrv.asmx - an abstraction of the API InterfacesToolkit</li>
+		<li>LogisticsToolkitSrv.asmx - an abstraction of the API LogisticsToolkit</li>
+		<li>QualityToolkitSrv.asmx - an abstraction of the API QualityToolkit</li>
+		<li>SalesToolkitSrv.asmx - an abstraction of the API SalesToolkit</li>
+		<li>SupportToolkitSrv.asmx - an abstraction of the API SupportToolkit</li>
+	</ul>
+</p>
+
+
+<h3>WSDL</h3>
+<p>To retrieve the WSDL (Web Service Description Language) for a particular web service, all you have to do is make an HTTP request to the web service page with '?WSDL' appended to the end of the URL.
+For example, if you would like the WSDL for the ClarifyApplicationSrv web service you would do something like the following:
+<p><img src="./webservices_wsdl.png"></p>
+Replace 'localhost' with the fcSDK Web Services server and 'FChoice.WebServices.Clarify' with the correct virtual directory where the web services are installed.
+</p>
+
+
+<p>
+If you are using the <a href="#WebServiceClient">fcSDK Web Services Client for .NET</a> to access the web services, 
+then you probably will not need to use the WSDLs for the web services.
+</p>
+
+
+<h3>Protocol Classes</h3>
+
+<p>Web services are composed of requests and responses.  
+Each of these is a XML message which is transported over HTTP using the SOAP protocol.  
+Many of the messages contain nested data structures (called complex types) which define the data needed for a particular request or response.  
+The client and server components of these web services generally transform these data structures into a hierarchy of classes which make them easier to deal with programmatically.  
+The process of converting classes to XML data structures is call serialization and the process of converting the XML data structures back to classes is called deserialization.  
+When using modern languages like .NET and Java, this is all handled for you.  
+If you are using a platform that does not provide tools to do serialization, then you may need to write your own.</p>
+
+<p>Because there are limits on what types may be serialized, 
+it is often necessary to create a class that its sole purpose is to be used to transport data in requests and responses for web services.  
+This is the case for many of the types in fcSDK Web Services.</p>
+
+<p>For example, in the FChoice.Toolkit.Clarify.Support namespaces there are setup objects for each of the toolkit APIs that allow one to specify invocation data for a particular API.  
+To extend this behavior to a web service implementation, protocol classes where created for each of these setup object.  
+The fcSDK Web Services use these protocol objects for input parameters and for return results.</p>
+
+<DIV Class=LanguageSpecific Name=Example_CS>
+		<p>
+		<SPAN class="lang">[C#]</SPAN>&nbsp;
+		</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table2">
+			<TR>
+			<TD NOWRAP>
+				<CODE class="VB">
+<font class='comment'>// Signature for standard SupportToolkit.CreateCase()</font><br/>
+public ToolkitResult CreateCase(CreateCaseSetup setupParam)<br/>
+<br/>
+<font class='comment'>// Signature for SupportToolkitWS.CreateCase()</font><br/>
+public ToolkitResultProtocol CreateCase(CreateCaseSetupProtocol setupParam)<br/>
+</CODE></TD></TR></TABLE></DIV></p>
+</DIV>
+
+<p>The web services convert these protocol classes to the real type counterparts which are passed in to the underlying fcSDK API during invocation.  
+As shown in the previous example, many results are returned as protocol objects which contain properties that are nearly identical to there non-protocol counterpart.</p>
+
+<h3>Web Service Sessions and Authentication</h3>
+
+<p>
+The ClarifyApplication Web Service ( ClarifyApplicationSrv ) is the starting point for all client applications consuming the fcSDK Web Services.
+From here CreateSession() is called to create a ClarifySession on the web services server which will live until either Logout() is called on the ClarifySessionSrv, 
+or a configurable timeout period is reached.  This method returns an authentication token which will be passed in the SOAP header of each web service call which requires authentication.  
+The server will read the authentication token from the SOAP header and match it back up to a ClarifySession that was previously created using ClarifyApplicationWS.CreateSession().  
+If it can not find a ClarifySession to match to due to invalid authentication token or an expired session, the API will throw an exception.  
+Each ClarifySession consumes a fcSDK license, so it’s important to call Logout() on the Clarify Session Web Service after use so that the license can be released.  
+If you are using the <a href="#WebServiceClient">fcSDK Web Services Client for .NET</a>, then the SOAP headers and the controlling of authentication token is handled for you.
+</p>
+
+<a name="WebServiceClient"><h3>fcSDK Web Services Client for .NET</h3></a>
+<h4>Web Services Client Overview</h4>
+<p>The recommended way to use the fcSDK Web Services in a .NET environment is to use the provided client which ships with the fcSDK.  
+The client makes writing code to use the web services very similar to writing code to use native fcSDK.</p>
+
+<p>The client classes completely hide the complexities of the SOAP headers and the session authentication token.  
+They also provide required state information to the web services such as which properties have been changed from
+their original values on the toolkit setup objects.</p>
+
+<p>Protocol classes only have default public constructor with no parameters (requirement for serialization) 
+which makes it difficult to determine which values of a complex type are required before invocation.  
+The fcSDK Web Services Client solves this problem by providing the user with a client side API 
+(which looks nearly identical to server side fcSDK code) 
+which handles the creation and transport of the protocol classes under the hood.</p>
+
+
+<h4>Client Protocol Classes</h4>
+<p>The client contains all the protocol classes needed to transport data to and from the server.
+Each web service page (each asmx page) has it's own version of a protocol class.
+These protocol classes live in the following namespaces:
+<ul>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.ClarifyApplicationSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.ClarifySessionSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.ClarifyDataAccessSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.ContractsToolkitSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.FieldOpsToolkitSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.InterfacesToolkitSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.LogisticsToolkitSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.QualityToolkitSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.SalesToolkitSrv</li>
+	<li>FChoice.WebServices.Clarify.Client.Protocols.SupportToolkitSrv</li>
+</ul>
+
+When using a client class that corresponds to a particular web service page, it may also be nescessary to
+use some of the protocol class for that service.  In some cases, such as the setup objects for the web services for
+the API Toolkits, the will be not be used.  Instead client versions of these classes are provided to provide the
+nescessary constructors and state information needed to invoke the server side API correctly.  You can look at the
+signature of the APIs to see their inputs and outputs to determine the types need.  Please refer to the 
+<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client_namespace.html">FChoice.WebServices.Clarify.Client</a> API
+documentation for details.
+</p>
+
+
+<h4>Working with Application and Session Information</h4>
+<p>The base client classes live in the FChoice.WebServices.Clarify.Client namespace.</p>
+
+<p>The starting point in engaging the web service client is to create an instance of the ClarifyApplicationWS class which 
+takes a single parameter that is the URL of the location where the fcSDK Web Services were installed.</p>
+
+<DIV Class=LanguageSpecific Name=Example_CS>
+		<p>
+		<SPAN class="lang">[C#]</SPAN>&nbsp;
+		</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table3">
+			<TR>
+			<TD NOWRAP>
+				<CODE class="VB">
+ClarifyApplicationWS application = <font class='keyword'>new</font> ClarifyApplicationWS(<font class='string'>"http://myserver/FChoice.WebServices.Clarify/");</font><br/>
+</CODE></TD></TR></TABLE></DIV></p>
+</DIV>
+
+<p>There are several methods that can be called on ClarifyApplicationWS for getting application related information such as retrieve list from the ListCache.
+Please see <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyApplicationWS.html">ClarifyApplicationWS</a>
+for more details.</p>
+
+<p>As with standard fcSDK, you create a session object by calling CreateSession().</p>
+
+<DIV Class=LanguageSpecific Name=Example_CS>
+		<p>
+		<SPAN class="lang">[C#]</SPAN>&nbsp;
+		</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table4">
+			<TR>
+			<TD NOWRAP>
+				<CODE class="VB">
+ClarifyApplicationWS application = <font class='keyword'>new</font> ClarifyApplicationWS(<font class='string'>"http:<font class='comment'>//myserver/FChoice.WebServices.Clarify/"</font>);</font><br/>
+<br/>
+ClarifySessionWS session = application.CreateSession( username, password );<br/>
+</CODE></TD></TR></TABLE></DIV></p>
+</DIV>
+
+
+<p>There are several methods that can be called on ClarifySessionWS for getting session related information such as
+getting the current time zone.</p>
+
+
+
+<h4>Accessing and Modifying Data using the Web Services Client</h4>
+<p>The ClarifyDataAccessWS class provides a means of doing ClarifyGeneric queries and data modifications.
+Please refer to the <a href="/fcsdk_webservices_dataaccess.html">Accessing Data with the Web Services</a> 
+guide for more details.</p>
+
+<h4>Accessing the API Toolkits using the Web Services Client</h4>
+
+<p>The fcSDK Web Services Client contains toolkit classes for each of the fcSDK API Toolkit classes which live under their own namespaces as follows:
+	<ul>
+		<li>FChoice.WebServices.Clarify.Client.Contracts.ContractsToolkitWS</li>
+		<li>FChoice.WebServices.Clarify.Client.DepotRepair.DepotRepairToolkitWS</li>
+		<li>FChoice.WebServices.Clarify.Client.FieldOps.FieldOpsToolkitWS</li>
+		<li>FChoice.WebServices.Clarify.Client.Interfaces.InterfacesToolkitWS</li>
+		<li>FChoice.WebServices.Clarify.Client.Logistics.LogisticsToolkitWS</li>
+		<li>FChoice.WebServices.Clarify.Client.Quality.QualityToolkitWS</li>
+		<li>FChoice.WebServices.Clarify.Client.Support.SupportToolkitWS</li>
+	</ul>
+</p>
+
+<p>Each of these toolkit classes can be instantiated by passing a valid ClarifySessionWS.</p>
+
+<DIV Class=LanguageSpecific Name=Example_CS>
+		<p>
+		<SPAN class="lang">[C#]</SPAN>&nbsp;
+		</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table9">
+			<TR>
+			<TD NOWRAP>
+				<CODE class="VB">
+SupportToolkitWS supportWS = <font class='keyword'>new</font> SupportToolkitWS( session );<br/>
+</CODE></TD></TR></TABLE></DIV></p>
+</DIV>
+
+
+
+<p>You may then call the non setup APIs directly.</p>
+
+<DIV Class=LanguageSpecific Name=Example_CS>
+		<p>
+		<SPAN class="lang">[C#]</SPAN>&nbsp;
+		</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table10">
+			<TR>
+			<TD NOWRAP>
+				<CODE class="VB">
+ToolkitResultProtocol result = supportWS.CreateCase(siteIDNum, firstName, lastName, phone);<br/>
+</CODE></TD></TR></TABLE></DIV></p>
+</DIV>
+
+
+<p>The toolkit API result will contain the same properties as the result of the equivalent fcSDK toolkit API.</p>
+
+<DIV Class=LanguageSpecific Name=Example_CS>
+		<p>
+		<SPAN class="lang">[C#]</SPAN>&nbsp;
+		</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table11">
+			<TR>
+			<TD NOWRAP>
+				<CODE class="VB">
+Console.WriteLine( “IDNum : {0}“, result.IDNum );<br>
+Console.WriteLine( “Objid : {0}“, result.Objid );<br>
+Console.WriteLine( “ReturnCode : {0}“, result.ReturnCode );<br>
+</CODE></TD></TR></TABLE></DIV></p>
+</DIV>
+
+
+
+<p>The output should look something like the following:</p>
+<pre>
+IDNum : 123456
+Objid : 268435499
+ReturnCode : 0
+</pre>
+
+<p>You may also choose to create a setup object to pass into the API just as you would with the native fcSDK API Toolkits.  The following is a more complete example:</p>
+
+
+<DIV Class=LanguageSpecific Name=Example_CS>
+		<p>
+		<SPAN class="lang">[C#]</SPAN>&nbsp;
+		</p>
+		<p class="example">
+		<DIV Class=LanguageSpecific Name=Code_CS>
+		<TABLE Class="CodeContainerTable" CellPadding="0" CellSpacing="0" Border="0" ID="Table12">
+			<TR>
+			<TD NOWRAP>
+				<CODE class="VB">
+<font class='comment'>// Create ClarifyApplicationWS</font><br/>
+ClarifyApplicationWS application = <font class='keyword'>new</font> ClarifyApplicationWS(<font class='string'>"http:<font class='comment'>//myserver/FChoice.WebServices.Clarify/"</font>);</font><br/>
+<br/>
+<font class='comment'>// Create ClarifySessionWS</font><br/>
+ClarifySessionWS session = application.CreateSession( username, password );<br/>
+<br/>
+<font class='comment'>// Create toolkit</font><br/>
+SupportToolkitWS supportWS = <font class='keyword'>new</font> SupportToolkitWS( session );<br/>
+<br/>
+<font class='comment'>// Create setup</font><br/>
+CreateCaseSetupWS setup = <font class='keyword'>new</font> CreateCaseSetupWS( siteIDNum, firstName, lastName, phone );<br/>
+<br/>
+<font class='comment'>// Supply additional data</font><br/>
+setup.Title = <font class='string'>"This is a test title"</font>;<br/>
+<br/>
+<font class='comment'>// Invoke API</font><br/>
+ToolkitResultProtocol result = supportWS.CreateCase( setup );<br/>
+<br/>
+<font class='comment'>// Output results</font><br/>
+Console.WriteLine( <font class='string'>"IDNum : {0}"</font>, result.IDNum );<br/>
+Console.WriteLine( <font class='string'>"Objid : {0}"</font>, result.Objid );<br/>
+Console.WriteLine( <font class='string'>"ReturnCode : {0}"</font>, result.ReturnCode );<br/>
+<br/>
+<font class='comment'>// Release the ClarifySession from the web service server</font><br/>
+session.Logout();<br/>
+</CODE></TD></TR></TABLE></DIV></p>
+</DIV>
+
+
+
+<p>The output should look something like the following:</p>
+<pre>
+IDNum : 123456
+Objid : 268435499
+ReturnCode : 0
+</pre>
+
+<p>For more information on the API Toolkits and how they should be used, please refer to the 
+<a href="/fcsdk_toolkits_walkthrough.html">Developer Walkthrough - Toolkit Fundamentals</a>.</p>
+
+<!--DXMETADATA start type="FilteredItemList" scrap="MENU_LINK" namespace="seealso" source="Item" filter="" NoHeader="True" NoFooter="True" format="<h4 class=dxh4>$$See_Also$$</h4><p id=dxseealsocontent>%%filtereditemlist%%</p>" -->
+
+<!--DXMETADATA end -->
+<div id="pagefooter"><p>&nbsp;</p><p>&nbsp;</p><hr size=1><p>&copy; 2010 Dovetail Software, Inc. - All rights reserved.<br/>- Clarify, Amdocs, and related products and names are copyright and trademark of Amdocs, Inc.<br/>- .NET, Visual Studio.NET, C#, Visual Basic and related products are trademark of Microsoft corporation.</p></div>		</div>
+	</body>
+</html>
