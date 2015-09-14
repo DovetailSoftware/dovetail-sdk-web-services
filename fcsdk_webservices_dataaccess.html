@@ -1,11 +1,10 @@
 <html xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
 <head>
-	<meta name="GENERATOR" content="Innovasys Document! X (http://www.innovasys.com)">
-	<title>Accessing Data with the Web Services</title>
+	<title>Accessing Data with Dovetail Web Services</title>
 	<link rel="stylesheet" type="text/css" href="stylesheets/dotnetstylesheet.css">
-	<script src="script/dotnet.js"></script>	
+	<script src="script/dotnet.js"></script>
 </head>
-<body id="dxBody" topmargin="0">	
+<body id="dxBody" topmargin="0">
 	<object id="obj_cook" classid="clsid:59CC0C20-679B-11D2-88BD-0800361A1803" style="display:none;" VIEWASTEXT></object>
 	<div id="dxlanguagemenu" class="popupbubble">
 		<h4><!--DXMETADATA start type="Phrase" name="Language" -->Language<!--DXMETADATA end --></h4>
@@ -37,26 +36,26 @@
 		<li><a href="#querying">Querying Data</a></li>
 		<li><a href="#querying">Modifying Data</a></li>
 	</ul>
-	
+
 		<a name="overview"></a>
 		<h2>Overview</h2>
 		<hr/>
-		<p>The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> class, which is part of the fcSDK Web Services Client, provides an abstraction of the powerful ClarifyGeneric
-		which can be use with web services. <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> allows you to query data as well as make modifications.  In each case,
-		messages are built on the client side of the web services which describe what ClarifyGeneric instructions to be processed on the 
-		server side of the web services.  Please see <a href="/fcsdk_dataaccess.html">&quot;Accessing Data with ClarifyGeneric&quot;</a> for details on generics and how to use them.</p>
+		<p>The <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> class, which is part of the Dovetail Web Services Client, provides an abstraction of the powerful ClarifyGeneric
+		which can be use with web services. <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> allows you to query data as well as make modifications.  In each case,
+		messages are built on the client side of the web services which describe what ClarifyGeneric instructions to be processed on the
+		server side of the web services.  Please see <a href="https://support.dovetailsoftware.com/documentation/Dovetail%20SDK/3.3.5/html/static_html/fcsdk_dataaccess.html">Accessing Data with ClarifyGeneric</a> for details on generics and how to use them.</p>
 
 		<a name="querying"></a>
 		<h2>Querying Data</h2>
 		<hr/>
-		<p>You query data by creating an instance of the 
-		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a> class and
+		<p>You query data by creating an instance of the
+		<a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a> class and
 		providing it with the information it needs to preform the desired query.  You can specify the fields which get returned
 		as well as filter and sorting criteria.
 		</p>
-		
+
 		<p>The following example will query for sites whose type is 1, sorted by ID Number descending. The example will then print out each site queried.</p>
-		
+
 		<DIV Class=LanguageSpecific Name=Example_CS>
 		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
 		<p class="example">
@@ -78,9 +77,9 @@ siteQuery.AppendSort( <font class='string'>"site_id"</font>, <font class='keywor
 <font class='keyword'>string</font> result = siteQuery.Query();<br/>
 <br/>
 <font class='comment'>// Output the result to the console</font><br/>
-Console.WriteLine(result);<br/>	
-		</CODE></TD></TR></TABLE></DIV></p></DIV>						
-		
+Console.WriteLine(result);<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
+
 		<p>All results from queries are returned as an XML string.  The previous example would output something similar to the following:</p>
 <pre>
 &lt;ClarifyGenericQuery&gt;
@@ -99,7 +98,7 @@ Console.WriteLine(result);<br/>
 		<p>You may then read the XML data as you wish (i.e. XmlDocument).  You may also specify that the query return
 		schema information for the fields selected so that you can load the results into a ADO.NET DataSet.
 		</p>
-		
+
 		<DIV Class=LanguageSpecific Name=Example_CS>
 		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
 		<p class="example">
@@ -128,17 +127,17 @@ DataSet ds = <font class='keyword'>new</font> DataSet();<br/>
 ds.ReadXml( reader );<br/>
 <br/>
 <font class='comment'>// Get the site table from the DataSet</font><br/>
-DataTable siteTable = ds.Tables[<font class='string'>"site"</font>];<br/>		
-		</CODE></TD></TR></TABLE></DIV></p></DIV>			
-		
-		<p>The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a>
+DataTable siteTable = ds.Tables[<font class='string'>"site"</font>];<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
+
+		<p>The <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a>
 		class also allows you to traverse relations just as you can with the
-		<a href="/fcSDK~FChoice.Foundation.Clarify.ClarifyGeneric.html">ClarifyGeneric</a>.  Calling the 
-		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery~Traverse.html">Traverse</a> method
-		allows you to specify the relation to traverse and returns a new instance of the 
-		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a> 
+		<a href="https://support.dovetailsoftware.com/documentation/Dovetail%20SDK/3.3.5/html/static_html/fcSDK~FChoice.Foundation.Clarify.ClarifyGeneric.html">ClarifyGeneric</a>.
+		Calling the <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery~Traverse.html">Traverse</a>
+		method allows you to specify the relation to traverse and returns a new instance of the
+		<a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataQuery.html">DataQuery</a>
 		class that for the table or view that is the result of that relation.</p>
-		
+
 		<DIV Class=LanguageSpecific Name=Example_CS>
 		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
 		<p class="example">
@@ -166,12 +165,12 @@ addressQuery.DataFields.AddRange( <font class='keyword'>new</font> <font class='
 <font class='keyword'>string</font> result = siteQuery.Query();<br/>
 <br/>
 <font class='comment'>// Output the result to the console</font><br/>
-Console.WriteLine(result);<br/>		
-		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+Console.WriteLine(result);<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
 
-		<p>Data is return in a hierarchical structure and each relation is nested within it's parent object in the traversal.  
+		<p>Data is return in a hierarchical structure and each relation is nested within it's parent object in the traversal.
 		The previous example would output something similar to the following:</p>
-		
+
 <pre>
 &lt;ClarifyGenericQuery&gt;
 	&lt;site objid=&quot;268435458&quot; site_id=&quot;NA&quot; name=&quot;Unknown&quot;&gt;
@@ -192,7 +191,7 @@ Console.WriteLine(result);<br/>
 	&lt;site objid=&quot;268436432&quot; site_id=&quot;995&quot; name=&quot;Test Site 5&quot;&gt;
 		&lt;address address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot; /&gt;
 	&lt;/site&gt;
-&lt;/ClarifyGenericQuery&gt;		
+&lt;/ClarifyGenericQuery&gt;
 </pre>
 
 		<p>If the following result is loaded into a DataSet, a row will be created for each address within a site even if
@@ -230,9 +229,9 @@ siteQuery.AppendSort( <font class='string'>"site_id"</font>, <font class='keywor
 <font class='keyword'>string</font> result = addressQuery.Query();<br/>
 <br/>
 <font class='comment'>// Output the result to the console</font><br/>
-Console.WriteLine(result);<br/>		
-		</CODE></TD></TR></TABLE></DIV></p></DIV>			
-		
+Console.WriteLine(result);<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
+
 <pre>
 &lt;ClarifyGenericQuery&gt;
 	&lt;address objid=&quot;268435473&quot; address=&quot;123 street&quot; city=&quot;Austin&quot; state=&quot;TX&quot; zipcode=&quot;78759&quot;&gt;
@@ -243,7 +242,7 @@ Console.WriteLine(result);<br/>
 		&lt;site objid=&quot;268436433&quot; site_id=&quot;996&quot; name=&quot;Test Site 4&quot; /&gt;
 		&lt;site objid=&quot;268436432&quot; site_id=&quot;995&quot; name=&quot;Test Site 5&quot; /&gt;
 	&lt;/address&gt;
-&lt;/ClarifyGenericQuery&gt;	
+&lt;/ClarifyGenericQuery&gt;
 </pre>
 
 		<p>You many have the need to use a table more than once within your DataQuery hierarchy which will require you to
@@ -281,8 +280,8 @@ billAddress.DataFields.AddRange( <font class='keyword'>new</font> <font class='k
 <font class='keyword'>string</font> result = siteQuery.Query();<br/>
 <br/>
 <font class='comment'>// Output the result to the console</font><br/>
-Console.WriteLine(result);<br/>		
-		</CODE></TD></TR></TABLE></DIV></p></DIV>			
+Console.WriteLine(result);<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
 
 <pre>
 &lt;ClarifyGenericQuery&gt;
@@ -308,18 +307,18 @@ Console.WriteLine(result);<br/>
 		<a name="querying"></a>
 		<h2>Modifying Data</h2>
 		<hr/>
-		
-		<p>Making modifications using the web services are done using the <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class.
-		You create an instance of the <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class by calling the 
-		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS~CreateDataModifier.html">CreateDataModifier</a> method of the 
-		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> class.</p>
-		
-		<p>After you have an instance of the <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class you
-		can begin to specify your updates.  The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class
+
+		<p>Making modifications using the web services are done using the <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class.
+		You create an instance of the <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class by calling the
+		<a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS~CreateDataModifier.html">CreateDataModifier</a> method of the
+		<a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ClarifyDataAccessWS.html">ClarifyDataAccessWS</a> class.</p>
+
+		<p>After you have an instance of the <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class you
+		can begin to specify your updates.  The <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class
 		has four factory methods for creating objects (called Modifiers) which will represent actions taken on single records within the database.
 		For example, if you wish to insert a new record, you will create a DeleteModifier which you will use to specify which record to delete.
 		</p>
-		
+
 		<DIV Class=LanguageSpecific Name=Example_CS>
 		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
 		<p class="example">
@@ -354,20 +353,19 @@ ModifierResultProtocol[] insertResults = modifier.Update();<br/>
 &nbsp;&nbsp;&nbsp;Console.WriteLine(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='keyword'>string</font>.Format(<font class='string'>"Action:{0}, Table:{1}, Name:{2}, Objid:{3}"</font>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.Action, result.Table, result.Name, result.Objid) );<br/>
-}<br/>				
-		</CODE></TD></TR></TABLE></DIV></p></DIV>					
-		
+}<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
+
 		<p>The previous example would output something similar to the following:</p>
 
 <pre>
 Action:Insert, Table:site, Name:mysite, Objid:268438543
 </pre>
 
-		<p>The <a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class allows
-		you to relate two records just as you can with <a href="/fcSDK~FChoice.Foundation.Clarify.ClarifyGeneric.html">ClarifyGeneric</a>.  To relate
-		one Modifier to another you call the <a href="FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.InsertModifier~RelateRecord.html">RelateRecord</a>
-		method.</p>
-		
+		<p>The <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.DataModifier.html">DataModifier</a> class allows you to relate two records just as you can with
+		<a href="https://support.dovetailsoftware.com/documentation/Dovetail%20SDK/3.3.5/html/static_html/fcSDK~FChoice.Foundation.Clarify.ClarifyGeneric.html">ClarifyGeneric</a>.
+		To relate one Modifier to another you call the <a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.InsertModifier~RelateRecord.html">RelateRecord</a> method.</p>
+
 		<DIV Class=LanguageSpecific Name=Example_CS>
 		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
 		<p class="example">
@@ -411,23 +409,22 @@ ModifierResultProtocol[] insertResults = modifier.Update();<br/>
 &nbsp;&nbsp;&nbsp;Console.WriteLine(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='keyword'>string</font>.Format(<font class='string'>"Action:{0}, Table:{1}, Name:{2}, Objid:{3}"</font>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.Action, result.Table, result.Name, result.Objid) );<br/>
-}<br/>				
-		</CODE></TD></TR></TABLE></DIV></p></DIV>			
-		
+}<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
+
 		<p>The previous example would output something similar to the following:</p>
-		
+
 <pre>
 Action:Insert, Table:site, Name:mysite, Objid:268438544
 Action:Insert, Table:case, Name:mycase, Objid:268437676
 </pre>
 
-		<p>When modifiying data you are only allow to represent on record with exactly one Modifier object.  Therefore you can not update
-		more than one record using a single Modifier.  You may update serveral records by using a Modifier for each update.
-		It it also possible to update a record base on it's relations to another record.  You use the 
-		<a href="/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ReferenceModifier.html">ReferenceModifier</a> to
-		reference a record with preforming an action on it. The following example show how to update the name of a site for a given case.</p>
-		
-	
+		<p>When modifiying data you are only allow to represent on record with exactly one Modifier object.  Therefore you can not
+		update more than one record using a single Modifier.  You may update serveral records by using a Modifier for each update.
+		It it also possible to update a record base on it's relations to another record.  You use the
+		<a href="./html/FChoice.WebServices.Clarify.Client~FChoice.WebServices.Clarify.Client.ReferenceModifier.html">ReferenceModifier</a>
+		to reference a record with preforming an action on it. The following example show how to update the name of a site for a given case.</p>
+
 		<DIV Class=LanguageSpecific Name=Example_CS>
 		<p><SPAN class="lang">[C#]</SPAN>&nbsp;</p>
 		<p class="example">
@@ -461,19 +458,16 @@ ModifierResultProtocol[] updateResults = modifier.Update();<br/>
 &nbsp;&nbsp;&nbsp;Console.WriteLine(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='keyword'>string</font>.Format(<font class='string'>"Action:{0}, Table:{1}, Name:{2}, Objid:{3}"</font>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.Action, result.Table, result.Name, result.Objid) );<br/>
-}<br/>				
-		</CODE></TD></TR></TABLE></DIV></p></DIV>			
-		
+}<br/>
+		</CODE></TD></TR></TABLE></DIV></p></DIV>
+
 		<p>The previous example would output something similar to the following:</p>
-		
+
 <pre>
 Action:Update, Table:site, Name:mysite, Objid:268438545
-Action:Reference, Table:case, Name:mycase, Objid:268437677	
+Action:Reference, Table:case, Name:mycase, Objid:268437677
 </pre>
-		
-
 		<div id="pagefooter"><p>&nbsp;</p><p>&nbsp;</p><hr size=1><p>&copy; 2010 Dovetail Software, Inc. - All rights reserved.<br/>- Clarify, Amdocs, and related products and names are copyright and trademark of Amdocs, Inc.<br/>- .NET, Visual Studio.NET, C#, Visual Basic and related products are trademark of Microsoft corporation.</p></div>
-
 	</div>
 </body>
 </html>
